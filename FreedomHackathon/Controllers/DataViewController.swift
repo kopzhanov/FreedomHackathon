@@ -13,6 +13,7 @@ import SwiftyJSON
 class DataViewController: UIViewController {
     
     var spec = ""
+    var prompt = ""
     var CVarray: [CV] = []
 
     override func viewDidLoad() {
@@ -26,7 +27,7 @@ class DataViewController: UIViewController {
     func getData() {
         SVProgressHUD.show()
         
-        let parameters = ["vacancy": spec]
+        let parameters = ["vacancy": prompt]
         
         AF.request(Urls.SEARCH_URL, method: .get,parameters: parameters).responseData { response in
             SVProgressHUD.dismiss()

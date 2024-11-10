@@ -36,6 +36,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         addButton.layer.borderWidth = 1.0
         addButton.layer.borderColor = UIColor.lightGray.cgColor
     }
+    
 
     @IBAction func addRequirement(_ sender: Any) {
         requirementsArray.append(requirementTextField.text!)
@@ -45,8 +46,19 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBAction func search(_ sender: Any) {
         let dataViewController = storyboard?.instantiateViewController(withIdentifier: "DataViewController") as! DataViewController
         dataViewController.spec = specTextField.text!
-        
+        dataViewController.prompt = promptContstructor()
+        print(promptContstructor())
         navigationController?.show(dataViewController, sender: self)
+    }
+    
+    func promptContstructor() -> String {
+        var text = specTextField.text!
+        
+        for item in requirementsArray{
+            text += ", " + item
+        }
+        
+        return text
     }
     
     
